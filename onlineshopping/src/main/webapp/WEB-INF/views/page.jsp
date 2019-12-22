@@ -23,6 +23,8 @@
 
 <script>
 	window.menu = '${title}';
+	
+	window.contextRoot = '${contextRoot}';
 </script>
 
 <!-- Bootstrap core CSS -->
@@ -31,8 +33,14 @@
 <!-- Bootstrap Slate Theme -->
 <link href="${css}/bootstrap-slate-theme.css" rel="stylesheet">
 
+<!-- Bootstrap DataTables -->
+<link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
+
 <!-- Custom styles for this template -->
 <link href="${css}/myapp.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="${css}/open-iconic-bootstrap.css" rel="stylesheet">
 
 </head>
 
@@ -65,6 +73,11 @@
 				<%@include file="listProducts.jsp" %>
 			</c:if>
 			
+			<!-- Show Products -->
+			<c:if test="${userClickShowProducts == true}">
+				<%@include file="singleProduct.jsp" %>
+			</c:if>
+			
 		</div>
 	
 		<!-- Footer -->
@@ -73,6 +86,12 @@
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/jquery.js"></script>
 		<script src="${js}/bootstrap.bundle.min.js"></script>
+		
+		<!-- DataTable Plugin -->
+		<script src="${js}/jquery.dataTables.js"></script>
+		
+		<!-- DataTable Bootstrap Script -->
+		<script src="${js}/dataTables.bootstrap4.js"></script>
 		
 		<!-- Custom JavaScript -->
 		<script src="${js}/myapp.js"></script>

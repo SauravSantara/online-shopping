@@ -30,3 +30,13 @@ footer {
 	bottom: 0;
 	border-top: 1px solid grey;
 }
+
+.dataTableImg {
+	width: 100px;
+	height: 100px;
+}
+
+.showProductImg {
+	width: 300px;
+	height: 300px;
+}
