@@ -34,9 +34,9 @@ public class Product {
 	@Column(name = "unit_price")
 	@Min(value=1, message="The price cannot be less than 1!")
 	private double unitPrice;
+	@Min(value=0, message="The quantity cannot be less than 0!")
 	private int quantity;
 	@Column(name = "is_active")
-	@JsonIgnore
 	private boolean active;
 	@Column(name = "category_id")
 	@JsonIgnore
@@ -147,6 +147,6 @@ public class Product {
 		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
 				+ description + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active=" + active
 				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views="
-				+ views + "]";
+				+ views + ", file=" + file + "]";
 	}
 }

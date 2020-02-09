@@ -34,12 +34,10 @@
 <body>
 
 	<div class="wrapper">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top role="navigation">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<a class="navbar-brand" href="${contextRoot}/home">Home</a>
-				</div>
+				<a class="navbar-brand" href="${contextRoot}/home">Online Shopping</a>
 			</div>
 		</nav>
 		<div class="content">
@@ -48,10 +46,10 @@
 					<div class="col-xs-12 col-lg-12">
 						<div class="jumbotron">
 							<h1>${errorTitle}</h1>
-							<hr />
-							<blockquote style="word-wrap: break-word">
+							<hr color="white"/>
+							<div class="blockquote" style="word-wrap: break-word">
 								${errorDescription}
-							</blockquote>
+							</div>
 						</div>
 					</div>
 				</div>
