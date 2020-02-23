@@ -40,18 +40,32 @@
 				</c:otherwise>
 			</c:choose>
 			
-			<c:choose>
-				<c:when test="${product.quantity < 1}">
-					<a href="javascript:void(0)" class="btn btn-secondary disabled"> 
-					<span class="oi oi-cart"> Add to Cart</span></a>
-				</c:when>
-				<c:otherwise>
-					<a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-success"> 
-					<span class="oi oi-cart"> Add to Cart</span></a>
-				</c:otherwise>
-			</c:choose> 
+			<security:authorize access="isAnonymous()">
+				<a href="${contextRoot}/login" class="btn btn-primary">
+					Login <span class="oi oi-account-login"></span>
+				</a>
+			</security:authorize>
 			
+			<security:authorize access="hasAuthority('USER')">
+				<c:choose>
+					<c:when test="${product.quantity < 1}">
+						<a href="javascript:void(0)" class="btn btn-secondary disabled"> 
+							<span class="oi oi-cart"> Add to Cart</span>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-success"> 
+							<span class="oi oi-cart"> Add to Cart</span>
+						</a>
+					</c:otherwise>
+				</c:choose> 
+			</security:authorize>
 			
+			<security:authorize access="hasAuthority('ADMIN')">
+				<a href="${contextRoot}/manage/${product.id}/product" class="btn btn-warning">
+					<span class="oi oi-pencil"> Edit</span>
+				</a>			
+			</security:authorize>
 			
 			<a href="${contextRoot}/show/all/products" class="btn btn-primary">Back</a>
 		</div>	

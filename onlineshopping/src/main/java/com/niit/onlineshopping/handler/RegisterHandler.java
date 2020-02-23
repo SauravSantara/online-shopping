@@ -19,8 +19,8 @@ public class RegisterHandler {
 	private UserDAO userDAO;
 	
 	
-//	@Autowired 
-//	private BCryptPasswordEncoder passwordEncoder;
+ 	@Autowired 
+ 	private BCryptPasswordEncoder passwordEncoder;
 	 
 	
 	public RegisterModel init() {
@@ -78,7 +78,7 @@ public class RegisterHandler {
 		}
 		
 		// encode the password
-//		user.setPassword(passwordEncoder.encode(user.getPassword())); 
+ 		user.setPassword(passwordEncoder.encode(user.getPassword())); 
 		
 		// save the user
 		userDAO.addUser(user);

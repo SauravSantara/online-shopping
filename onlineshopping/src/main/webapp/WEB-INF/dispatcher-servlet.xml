@@ -13,7 +13,6 @@
     http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd">
 
 	<context:component-scan base-package="com.niit.onlineshopping" />
-	<context:component-scan base-package="com.niit.shoppingbackend" />
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

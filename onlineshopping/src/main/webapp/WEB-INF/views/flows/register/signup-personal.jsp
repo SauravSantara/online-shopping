@@ -5,6 +5,7 @@
 	<div class="row">
 		<div class="col-md-6 offset-md-3">
 			<div class="card bg-dark">
+			
 				<div class="card-header">
 					<h4>Sign Up - Personal</h4>
 				</div>
@@ -83,6 +84,13 @@
 						</div>
 					</sf:form>
 				</div>
+				
+				<div class="card-footer">
+					<div class="text-right">
+						Existing User - <a href="${contextRoot}/login">Login Here</a>
+					</div>
+				</div>
+							
 			</div>
 		</div>
 	</div>

@@ -12,14 +12,9 @@ import javax.persistence.OneToOne;
 @Entity
 public class Cart implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * private fields
-	 * */
+	/*private fields*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -36,8 +31,6 @@ public class Cart implements Serializable {
 	}
 
 	/*--------*/
-
-
 
 	@Column(name = "grand_total")	
 	private double grandTotal;
@@ -65,7 +58,6 @@ public class Cart implements Serializable {
 	public void setCartLines(int cartLines) {
 		this.cartLines = cartLines;
 	}
-	
 	
 	@Override
 	public String toString() {
