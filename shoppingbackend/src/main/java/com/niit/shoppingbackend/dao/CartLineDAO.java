@@ -18,7 +18,6 @@ public interface CartLineDAO {
 	public List<CartLine> listAvailable(int cartId);
 	public CartLine getByCartAndProduct(int cartId, int productId);
 	
-	
 	// udpate a cart
 	boolean updateCart(Cart cart);
 }

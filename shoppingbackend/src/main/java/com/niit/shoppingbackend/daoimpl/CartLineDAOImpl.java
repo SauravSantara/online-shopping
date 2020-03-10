@@ -86,7 +86,7 @@ public class CartLineDAOImpl implements CartLineDAO {
 									.setParameter("cartId", cartId)
 									.setParameter("productId", productId)
 										.getSingleResult();		
-			}
+		}
 		catch(Exception ex) {
 			return null;
 		}
@@ -96,7 +96,6 @@ public class CartLineDAOImpl implements CartLineDAO {
 	@Override
 	public boolean updateCart(Cart cart) {
 		try {
-			
 			sessionFactory.getCurrentSession().update(cart);
 			return true;
 		}

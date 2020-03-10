@@ -1,7 +1,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 	<div class="container">
-		<a class="navbar-brand" href="${contextRoot}/home">Online Shopping</a>
+		<a class="navbar-brand" id="home" href="${contextRoot}/home">Online Shopping</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarResponsive" aria-controls="navbarResponsive"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +45,7 @@
 						data-toggle="dropdown"> ${userModel.fullName} </a>
 						
 						<ul class="dropdown-menu">
+						
 							<security:authorize access="hasAuthority('USER')">
 								<li class="dropdown-item">
 									<a href="${contextRoot}/cart/show"> 
