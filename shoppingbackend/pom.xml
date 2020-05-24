@@ -14,7 +14,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>5.2.0.RELEASE</spring.version>
     <hibernate.version>5.4.7.Final</hibernate.version>
-    <jackson.version>2.9.8</jackson.version>
+    <jackson.version>2.11.0</jackson.version>
   </properties>
 
   <dependencies>
@@ -121,7 +121,7 @@
 	<dependency>
 	    <groupId>org.hibernate.validator</groupId>
 	    <artifactId>hibernate-validator</artifactId>
-	    <version>6.0.17.Final</version>
+	    <version>6.1.0.Final</version>
 	</dependency>
 	
   </dependencies>
