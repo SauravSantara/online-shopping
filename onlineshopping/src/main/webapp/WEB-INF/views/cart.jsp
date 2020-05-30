@@ -72,7 +72,7 @@
 							<strong>Total &#8377; ${userModel.cart.grandTotal}</strong>
 						</td>
 						<td>
-							<a href="#" class="btn btn-success">Checkout <span class="oi oi-chevron-right"></span></a>
+							<a href="${contextRoot}/payment" class="btn btn-success">Checkout <span class="oi oi-chevron-right"></span></a>
 						</td>
 					</tr>
 				</tfoot>

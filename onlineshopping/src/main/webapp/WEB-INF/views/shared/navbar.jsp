@@ -49,10 +49,9 @@
 							<security:authorize access="hasAuthority('USER')">
 								<li class="dropdown-item">
 									<a href="${contextRoot}/cart/show"> 
-										Cart :
+										Items in Cart :
 										<!-- <span class="oi oi-cart"></span> -->
-										<span class="badge badge-light"> ${userModel.cart.cartLines} </span> 
-										Items
+										<span class="badge badge-light"> ${userModel.cart.cartLines} </span>
 										<%-- - &#8377; ${userModel.cart.grandTotal} --%>
 									</a>
 								</li>

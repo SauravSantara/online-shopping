@@ -32,6 +32,7 @@ public class PageController {
 	@Autowired
 	private ProductDAO productDAO;
 
+	// Home
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
@@ -47,6 +48,7 @@ public class PageController {
 		return mv;
 	}
 
+	// About
 	@RequestMapping(value = "/about")
 	public ModelAndView about() {
 		ModelAndView mv = new ModelAndView("page");
@@ -55,6 +57,7 @@ public class PageController {
 		return mv;
 	}
 
+	// Contact
 	@RequestMapping(value = "/contact")
 	public ModelAndView contact() {
 		ModelAndView mv = new ModelAndView("page");
@@ -164,5 +167,13 @@ public class PageController {
 		  
 		return "redirect:/login?logout";
 	}
-	  
+	
+	// Payment
+	@RequestMapping(value = "/payment")
+	public ModelAndView payment() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Payment");
+		mv.addObject("userClickPayment", true);
+		return mv;
+	}
 }
