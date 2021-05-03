@@ -19,7 +19,7 @@
 		<!-- only admin access -->
 		<intercept-url pattern="/manage/**" access="hasAuthority('ADMIN')" />
 		
-		<!-- only user access (who is registered) -->
+		<!-- only registered user access -->
 		<intercept-url pattern="/cart/**" access="hasAuthority('USER')" />
 		
 		<!-- rest of the world -->

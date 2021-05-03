@@ -7,19 +7,22 @@ import com.niit.shoppingbackend.dto.User;
 
 public interface UserDAO {
 
-	// add an user
+	// user
 	boolean addUser(User user);
 	User getByEmail(String email);
+	User get(int id);
 	
-	// add an address
+	// address
 	boolean addAddress(Address address);
+	Address getAddress(int addressId);
+	boolean updateAddress(Address address);
 	
 	// alternative
-	Address getBillingAddress(int userId);
-	List<Address> listShippingAddresses(int userId);
-		
-	/*	
-	Address getBillingAddress(User user);
-	List<Address> listShippingAddresses(User user);
-	*/
+	/*
+	 * Address getBillingAddress(int userId); List<Address>
+	 * listShippingAddresses(int userId);
+	 */
+	Address getUserAddress(int userId);
+	List<Address> listAddresses(int userId);
+	
 }

@@ -57,7 +57,7 @@ public class ManagementController {
 		if(operation!=null) {
 			
 			if(operation.equals("product")) {
-				mv.addObject("message", "Product Submitted Successfully");
+				mv.addObject("message", "Product Submitted Successfully!");
 			}
 			else if(operation.equals("category")) {
 				mv.addObject("message", "Category Submitted Successfully!");
@@ -136,7 +136,7 @@ public class ManagementController {
 		boolean isActive = product.isActive();
 		
 		// activating and deactivating based on the value of active field
-		product.setActive(!product.isActive());
+		product.setActive(!isActive);
 		
 		// updating the product
 		productDAO.update(product);
@@ -148,12 +148,12 @@ public class ManagementController {
 	
 	// to handle category submission
 	@RequestMapping(value="/category", method=RequestMethod.POST)
-	public String handleCategorySubmission(@ModelAttribute Category category) {
+	public String handleCategorySubmission(@ModelAttribute Category category, HttpServletRequest request) {
 		
 		// add the new category
 		categoryDAO.add(category);
 		
-		return "redirect:/manage/products?operation=category";
+		return "redirect:" + request.getHeader("Referer") + "?operation=category";
 		
 	}
 	

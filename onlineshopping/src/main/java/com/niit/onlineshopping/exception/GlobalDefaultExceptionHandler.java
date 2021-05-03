@@ -16,7 +16,7 @@ public class GlobalDefaultExceptionHandler {
 		
 		ModelAndView mv = new ModelAndView("error");
 		
-		mv.addObject("errorTitle", "The page is not constructed");
+		mv.addObject("errorTitle", "This page is not yet constructed");
 		
 		mv.addObject("errorDescription", "The page you are looking for is not available now!");
 		
@@ -32,9 +32,23 @@ public class GlobalDefaultExceptionHandler {
 		
 		mv.addObject("errorTitle", "Product Not Available");
 		
-		mv.addObject("errorDescription", "The product you are looking for is not available now!");
+		mv.addObject("errorDescription", "The product you are looking for is not available right now!");
 		
 		mv.addObject("title", "Product Unavailable");
+		
+		return mv;
+	}
+
+	@ExceptionHandler(CategoryNotFoundException.class)
+	public ModelAndView handlerCategoryNotFoundException() {
+		
+		ModelAndView mv = new ModelAndView("error");
+		
+		mv.addObject("errorTitle", "Category Not Available");
+		
+		mv.addObject("errorDescription", "The category you are looking for is not available right now!");
+		
+		mv.addObject("title", "Category Unavailable");
 		
 		return mv;
 	}

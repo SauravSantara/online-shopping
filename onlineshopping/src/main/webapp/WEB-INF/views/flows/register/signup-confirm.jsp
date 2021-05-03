@@ -1,67 +1,118 @@
 <%@include file="../shared/flows-header.jsp"%>
 
 <div class="container">
+	
+	<!-- column to display the personal details -->
 	<div class="row">
-
-		<!-- column to display the personal details -->
-		<div class="col-sm-6">
-			<div class="card bg-dark">
+	
+		<div class="col-md-6 offset-md-3">
+		
+			<div class="card bg-light">
 			
 				<div class="card-header">
-					<h4>Personal Details</h4>
+					<h4>Profile</h4>
 				</div>
 				
-				<div class="card-body">
-					<div class="text-center">
-						<h4>${registerModel.user.firstName} ${registerModel.user.lastName}</h4>
-						<h5>Email: ${registerModel.user.email}</h5>
-						<h5>Contact Number: ${registerModel.user.contactNumber}</h5>
-						<h5>Role: ${registerModel.user.role}</h5>
-					</div>
-				</div>
+				<table class="table table-borderless">
+					<tbody>
+			           	<tr>
+		               		<td>Full Name:</td>
+			               	<td>${registerModel.user.firstName} ${registerModel.user.lastName}</td>
+					    </tr>
+					    <tr>
+				        	<td>Email:</td>
+					        <td>${registerModel.user.email}</td>
+					    </tr>
+					    <tr>
+					        <td>Contact Number:</td>
+					        <td>${registerModel.user.contactNumber}</td>
+					    </tr>
+			  		</tbody>
+			 	</table>
 				
 				<div class="card-footer">
-					<a href="${flowExecutionUrl}&_eventId_personal" class="btn btn-primary">Edit</a>
-				</div>
-			</div>
-		</div>
-
-		<!-- column to display the address  -->
-		<div class="col-sm-6">
-			<div class="card bg-dark">
-			
-				<div class="card-header">
-					<h4>Billing Address</h4>
+					<a href="${flowExecutionUrl}&_eventId_personal" class="btn btn-warning btn-block">Edit</a>
 				</div>
 				
-				<div class="card-body">
-					<div class="text-center">
-						<h4>${registerModel.billing.addressLineOne}</h4>
-						<h4>${registerModel.billing.addressLineTwo}</h4>
-						<h4>${registerModel.billing.city} - ${registerModel.billing.postalCode}</h4>
-						<h4>${registerModel.billing.state} - ${registerModel.billing.country}</h4>
-					</div>
+			<!-- card -->
+			</div>
+			
+		<!-- col-md-6 offset-md-3 -->
+		</div>
+		
+	<!-- row -->
+	</div>
+		
+	<br />
+	<br />
+	
+	<!-- column to display the address  -->
+	<div class="row">
+	
+		<div class="col-md-6 offset-md-3">
+		
+			<div class="card bg-light">
+			
+				<div class="card-header">
+					<h4>Address</h4>
 				</div>
+				
+				<table class="table table-borderless">
+					<tbody>
+			            <tr>
+			                <td>Address:</td>
+			                <td>${registerModel.address.addressLineOne}, ${registerModel.address.addressLineTwo}</td>
+			            </tr>
+			            <%-- <tr>
+			                <td>Address Line 2:</td>
+			                <td>${registerModel.address.addressLineTwo}</td>
+			            </tr> --%>
+			            <tr>
+			                <td>City:</td>
+			                <td>${registerModel.address.city}</td>
+			            </tr>
+			            <tr>
+			                <td>Postal Code:</td>
+			                <td>${registerModel.address.postalCode}</td>
+			            </tr>
+			            <tr>
+			                <td>State:</td>
+			                <td>${registerModel.address.state}</td>
+			            </tr>
+			            <tr>
+			                <td>Country:</td>
+			                <td>${registerModel.address.country}</td>
+			            </tr>
+		           	</tbody>
+	           	</table>
 				
 				<div class="card-footer">
 					<!-- anchor to move to the edit of address -->
-					<a href="${flowExecutionUrl}&_eventId_billing" class="btn btn-primary">Edit</a>
+					<a href="${flowExecutionUrl}&_eventId_address" class="btn btn-warning btn-block">Edit</a>
 				</div>
+				
+			<!-- card -->
 			</div>
+			
+		<!-- col-md-6 offset-md-3 -->
 		</div>
+	
+	<!-- row -->
 	</div>
-
+			
 	<br />
 	<br />
 
 	<!-- to provide the confirm button after displaying the details -->
 	<div class="row">
-		<div class="col-sm-4 offset-sm-4">
+		<div class="col-md-6 offset-md-3">
 			<div class="text-center">
-				<a href="${flowExecutionUrl}&_eventId_submit" class="btn btn-primary">Confirm</a>
+				<a href="${flowExecutionUrl}&_eventId_submit" class="btn btn-success btn-block">Confirm</a>
 			</div>
 		</div>
 	</div>
+	
+<!-- container -->
 </div>
 
 <%@include file="../shared/flows-footer.jsp"%>

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.niit.shoppingbackend.dto.Cart;
 
-public class UserModel implements Serializable{
+public class UserModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

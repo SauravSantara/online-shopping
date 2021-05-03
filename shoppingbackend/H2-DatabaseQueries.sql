@@ -1,3 +1,5 @@
+DROP ALL OBJECTS;
+
 CREATE TABLE category (
 	id IDENTITY,
 	name VARCHAR(50),
@@ -35,7 +37,7 @@ CREATE TABLE product (
 	views INT DEFAULT 0,
 	CONSTRAINT pk_product_id PRIMARY KEY (id),
  	CONSTRAINT fk_product_category_id FOREIGN KEY (category_id) REFERENCES category (id),
-	CONSTRAINT fk_product_supplier_id FOREIGN KEY (supplier_id) REFERENCES user_detail(id),	
+	CONSTRAINT fk_product_supplier_id FOREIGN KEY (supplier_id) REFERENCES user_detail(id)
 );	
 
 -- the address table to store the user billing and shipping addresses
@@ -48,8 +50,6 @@ CREATE TABLE address (
 	state VARCHAR(20),
 	country VARCHAR(20),
 	postal_code VARCHAR(10),
-	is_billing BOOLEAN,
-	is_shipping BOOLEAN,
 	CONSTRAINT fk_address_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (id),
 	CONSTRAINT pk_address_id PRIMARY KEY (id)
 );
@@ -78,10 +78,37 @@ CREATE TABLE cart_line (
 	CONSTRAINT pk_cartline_id PRIMARY KEY (id)
 );
 
+-- the order detail table to store the order
+CREATE TABLE order_detail (
+	id IDENTITY,
+	user_id int,
+	order_total DECIMAL(10,2),
+	order_count int,
+	address_id int,
+	order_date date,
+	CONSTRAINT fk_order_detail_user_id FOREIGN KEY (user_id) REFERENCES user_detail (id),
+	CONSTRAINT fk_order_detail_address_id FOREIGN KEY (address_id) REFERENCES address (id),
+	CONSTRAINT pk_order_detail_id PRIMARY KEY (id)
+);
+
+-- the order item table to store order items
+CREATE TABLE order_item (
+	id IDENTITY,
+	order_id int,
+	total DECIMAL(10,2),
+	product_id int,
+	product_count int,
+	buying_price DECIMAL(10,2),
+	CONSTRAINT fk_order_item_product_id FOREIGN KEY (product_id) REFERENCES product (id),
+	CONSTRAINT fk_order_item_order_id FOREIGN KEY (order_id) REFERENCES order_detail (id),
+	CONSTRAINT pk_order_item_id PRIMARY KEY (id)
+);
+
 -- adding three categories
 INSERT INTO category (name, description,image_url,is_active) VALUES ('Laptop', 'This is description for Laptop category!', 'CAT_1.png', true);
 INSERT INTO category (name, description,image_url,is_active) VALUES ('Television', 'This is description for Television category!', 'CAT_2.png', true);
 INSERT INTO category (name, description,image_url,is_active) VALUES ('Mobile', 'This is description for Mobile category!', 'CAT_3.png', true);
+
 -- adding three users 
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
@@ -92,9 +119,11 @@ VALUES ('Natsu', 'Dragneel', 'USER', true, '$2y$12$h1dd7lM8ofL.Gkip8MBR4OYAD01a2
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
 VALUES ('Black', 'Star', 'SUPPLIER', true, '$2y$12$ObgcHIT8EspVtBxi6Gvha.B15XS.H3BF9lAun3JgL7xdxTtFQyqWm', 'bs@gmail.com', '7777777777');
+
 -- adding a supplier correspondece address
-INSERT INTO address( user_id, address_line_one, address_line_two, city, state, country, postal_code, is_billing, is_shipping) 
-VALUES (2, '102 Sabarmati Society, Mahatma Gandhi Road', 'Near Salt Lake, Gandhi Nagar', 'Ahmedabad', 'Gujarat', 'India', '111111', true, false );
+INSERT INTO address( user_id, address_line_one, address_line_two, city, state, country, postal_code) 
+VALUES (2, '102 Sabarmati Society, Mahatma Gandhi Road', 'Near Salt Lake, Gandhi Nagar', 'Ahmedabad', 'Gujarat', 'India', '111111' );
+
 -- adding five products
 INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
 VALUES ('PRDABC123DEFX', 'iPhone 5s', 'apple', 'This is one of the best phone available in the market right now!', 18000, 5, true, 3, 2, 0, 0 );
@@ -106,3 +135,6 @@ INSERT INTO product (code, name, brand, description, unit_price, quantity, is_ac
 VALUES ('PRDMNO123PQRX', ' Macbook Pro', 'apple', 'This is one of the best laptops available in the market right now!', 54000, 3, true, 1, 2, 0, 0 );
 INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
 VALUES ('PRDABCXYZDEFX', 'Dell Latitude E6510', 'dell', 'This is one of the best laptop series from dell that can be used!', 48000, 5, true, 1, 3, 0, 0 );
+
+-- adding a cart for testing 
+INSERT INTO cart (user_id, grand_total, cart_lines) VALUES (4, 0, 0);

@@ -16,6 +16,8 @@ public class CartLine implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	// private fields
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -37,9 +39,7 @@ public class CartLine implements Serializable {
 	@Column(name = "is_available")
 	private boolean available = true;
 	
-	/*
-	 * setter and getters for the above fields
-	 * */
+	// setter and getters for the above fields
 	
 	public double getBuyingPrice() {
 		return buyingPrice;
@@ -83,4 +83,5 @@ public class CartLine implements Serializable {
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}		
+
 }

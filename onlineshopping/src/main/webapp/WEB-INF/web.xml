@@ -17,8 +17,8 @@
 		</init-param>
 		
 		<multipart-config>
-			<max-file-size>2097152</max-file-size>
-			<max-request-size>4194304</max-request-size>
+			<max-file-size>20848820</max-file-size>
+			<max-request-size>418018841</max-request-size>
 			<file-size-threshold>1048576</file-size-threshold>
 		</multipart-config>
 	</servlet>
@@ -40,6 +40,7 @@
 		</param-value>
 	</context-param>
 
+	<!-- Spring Security filter -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

@@ -14,32 +14,30 @@ public class Cart implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	/*private fields*/
+	// private fields
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "grand_total")
+	private double grandTotal;
+	@Column(name = "cart_lines")
+	private int cartLines;
 	
-	/*--------*/
+	// linking the cart with a user
+	
 	@OneToOne
 	private User user;
-		
+
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	/*--------*/
-
-	@Column(name = "grand_total")	
-	private double grandTotal;
-	@Column(name = "cart_lines")
-	private int cartLines;
 	
-	/*
-	 * setter and getters for the fields
-	 * */
+	// setter and getters for the above fields
+	
 	public int getId() {
 		return id;
 	}

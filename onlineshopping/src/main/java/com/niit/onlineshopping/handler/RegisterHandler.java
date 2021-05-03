@@ -18,10 +18,8 @@ public class RegisterHandler {
 	@Autowired
 	private UserDAO userDAO;
 	
-	
  	@Autowired 
  	private BCryptPasswordEncoder passwordEncoder;
-	 
 	
 	public RegisterModel init() {
 		return new RegisterModel();
@@ -31,10 +29,9 @@ public class RegisterHandler {
 		registerModel.setUser(user);
 	}
 	
-	public void addBilling(RegisterModel registerModel, Address billing) {		
-		registerModel.setBilling(billing);
+	public void addAddress(RegisterModel registerModel, Address address) {		
+		registerModel.setAddress(address);
 	}
-	
 	
 	public String validateUser(User user, MessageContext error) {
 		String transitionValue = "success";
@@ -64,7 +61,6 @@ public class RegisterHandler {
 		return transitionValue;
 	}
 	 
-	
 	public String saveAll(RegisterModel model) {
 		String transitionValue = "success";
 		
@@ -84,12 +80,11 @@ public class RegisterHandler {
 		userDAO.addUser(user);
 		
 		// get the address
-		Address billing = model.getBilling();
-		billing.setUserId(user.getId());
-		billing.setBilling(true);
+		Address address = model.getAddress();
+		address.setUserId(user.getId());
 
 		// save the address
-		userDAO.addAddress(billing);		
+		userDAO.addAddress(address);		
 		
 		return transitionValue;
 	}	

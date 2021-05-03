@@ -1,5 +1,7 @@
 package com.niit.onlineshopping.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,26 +15,30 @@ import com.niit.onlineshopping.service.CartService;
 @RequestMapping("/cart")
 public class CartController {
 
+	private final static Logger logger = LoggerFactory.getLogger(CartController.class);
+	
 	@Autowired
 	private CartService cartService;
 	
 	@RequestMapping("/show")
 	public ModelAndView showCart(@RequestParam(name = "result", required=false)String result) {
 		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Cart");
+		mv.addObject("userClickShowCart", true);
 		
 		if(result!=null) {
 			switch(result) {
 			case "updated":
-				mv.addObject("message", "CartLine has been updated successfully!");
+				mv.addObject("message", "Cart has been updated successfully!");
 				break;
 			case "added":
-				mv.addObject("message", "CartLine has been added successfully!");
+				mv.addObject("message", "Product has been added in cart successfully!");
 				break;
 			case "deleted":
-				mv.addObject("message", "CartLine has been removed successfully!");
+				mv.addObject("message", "Product has been removed from cart successfully!");
 				break;					
 			case "maximum":
-				mv.addObject("message", "CartLine has reached to maximum count!");
+				mv.addObject("message", "Maximum limit for the item has been reached!");
 				break;					
 			case "unavailable":
 				mv.addObject("message", "Product quantity is not available!");
@@ -42,8 +48,13 @@ public class CartController {
 				break;			
 			}
 		}
-		mv.addObject("title", "User Cart");
-		mv.addObject("userClickShowCart", true);
+		else {
+			String response = cartService.validateCartLine();
+			if(response.equals("result=modified")) {
+				mv.addObject("message", "One or more items inside cart has been modified!");
+			}
+		}
+		
 		mv.addObject("cartLines", cartService.getCartLines());		
 		return mv;		
 	}
@@ -64,5 +75,21 @@ public class CartController {
 	public String addCart(@PathVariable int productId) {		
 		String response = cartService.addCartLine(productId);		
 		return "redirect:/cart/show?"+response;
-	}	
+	}
+
+	/* after validating it redirect to checkout
+	 * if result received is success proceed to checkout 
+	 * else display the message to the user about the changes in cart page
+	 * */	
+	@RequestMapping("/validate")
+	public String validateCart() {	
+		String response = cartService.validateCartLine();
+		if (!response.equals("result=success")) {
+			return "redirect:/cart/show?"+response; 
+		} 
+		else { 
+			return "redirect:/checkout"; 
+		}
+	}
+	
 }

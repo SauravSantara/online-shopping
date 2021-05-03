@@ -19,9 +19,9 @@ import javax.validation.constraints.NotBlank;
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	/*
-	 * private fields for user
-	 * */
+	
+	// private fields for user
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -62,15 +62,16 @@ public class User implements Serializable{
 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Cart cart;
+	
 	public Cart getCart() {
 		return cart;
 	}
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	/*
-	 * setter and getters for the fields
-	 * */
+	
+	// setter and getters for the above fields
+	
 	public int getId() {
 		return id;
 	}
@@ -120,9 +121,8 @@ public class User implements Serializable{
 		this.enabled = enabled;
 	}
 	
-	/*
-	 * toString for logging and debugging activity
-	 * */
+	// toString for logging and debugging activity
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email

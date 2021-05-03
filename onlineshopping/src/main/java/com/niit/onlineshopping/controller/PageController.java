@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.onlineshopping.exception.CategoryNotFoundException;
 import com.niit.onlineshopping.exception.ProductNotFoundException;
 import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
@@ -34,16 +35,24 @@ public class PageController {
 
 	// Home
 	@RequestMapping(value = { "/", "/home", "/index" })
-	public ModelAndView index() {
+	public ModelAndView index(@RequestParam(name="logout",required=false)String logout) {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Home");
 
-		logger.info("Inside PageController index method - INFO");
-		logger.debug("Inside PageController index method - DEBUG");
-
+		/*
+		 * logger.info("Inside PageController index method - INFO");
+		 * logger.debug("Inside PageController index method - DEBUG");
+		 */
 		// passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
+		
+		// passing the list of most viewed products
+		mv.addObject("mvProducts", productDAO.getProductsByParam("views", 3));
 
+		if(logout!=null) {
+			mv.addObject("message", "You have successfully logged out!");			
+		}
+		
 		mv.addObject("userClickHome", true);
 		return mv;
 	}
@@ -68,24 +77,29 @@ public class PageController {
 
 	
 	// Methods to load all the products and based on category
-	@RequestMapping(value = "show/all/products") public ModelAndView showAllProducts() { 
+	@RequestMapping(value = "/show/all/products") 
+	public ModelAndView showAllProducts() { 
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "All Products");
   
 		//passing the list of categories 
 		mv.addObject("categories", categoryDAO.list());
   
-		mv.addObject("userClickAllProducts", true); return mv; 
+		mv.addObject("userClickAllProducts", true); 
+		return mv; 
 	}
 	  
-	@RequestMapping(value = "show/category/{id}/products") public ModelAndView showCategoryProducts(
-			@PathVariable("id") int id) { 
-		ModelAndView mv = new
-		ModelAndView("page");
+	@RequestMapping(value = "show/category/{id}/products") 
+	public ModelAndView showCategoryProducts(@PathVariable int id) throws CategoryNotFoundException { 
+		ModelAndView mv = new ModelAndView("page");
   
 		//categoryDAO to fetch a single category 
-		Category category = null; category = categoryDAO.get(id);
-  
+		Category category = null; 
+		
+		category = categoryDAO.get(id);  
+
+		if (category == null) throw new CategoryNotFoundException();
+
 		mv.addObject("title", category.getName());
   
 		//passing the list of categories 
@@ -94,7 +108,8 @@ public class PageController {
 		//passing the single category object 
 		mv.addObject("category", category);
   
-		mv.addObject("userClickCategoryProducts", true); return mv; 
+		mv.addObject("userClickCategoryProducts", true); 
+		return mv; 
 	}
   
 	// Viewing a single product
@@ -104,8 +119,7 @@ public class PageController {
 
 		Product product = productDAO.get(id);
 
-		if (product == null)
-			throw new ProductNotFoundException();
+		if (product == null) throw new ProductNotFoundException();
 
 		// update the view count
 		product.setViews(product.getViews() + 1);
@@ -122,7 +136,7 @@ public class PageController {
 	@RequestMapping(value = "/register")
 	public ModelAndView register() {		
 		ModelAndView mv = new ModelAndView("page");		
-		mv.addObject("title","About Us");
+		mv.addObject("title","Registration");
 		return mv;				
 	}
 
@@ -155,8 +169,8 @@ public class PageController {
 	}
 	   
 	/* Logout */
-	@RequestMapping(value = "/perform-logout") public String
-	logout(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/perform-logout") 
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
 	  
 		// first we are going to fetch the authentication 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -167,13 +181,5 @@ public class PageController {
 		  
 		return "redirect:/login?logout";
 	}
-	
-	// Payment
-	@RequestMapping(value = "/payment")
-	public ModelAndView payment() {
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Payment");
-		mv.addObject("userClickPayment", true);
-		return mv;
-	}
+
 }

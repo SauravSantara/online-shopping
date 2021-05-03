@@ -9,7 +9,7 @@ public class RegisterModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private User user;
-	private Address billing;
+	private Address address;
 
 	public User getUser() {
 		return user;
@@ -19,12 +19,12 @@ public class RegisterModel implements Serializable {
 		this.user = user;
 	}
 
-	public Address getBilling() {
-		return billing;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setBilling(Address billing) {
-		this.billing = billing;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 }

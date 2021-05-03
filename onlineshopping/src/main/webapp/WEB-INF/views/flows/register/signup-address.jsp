@@ -1,18 +1,19 @@
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
-
 <%@include file="../shared/flows-header.jsp"%>
 
 <div class="container">
+
 	<div class="row">
+	
 		<div class="col-md-6 offset-md-3">
-			<div class="card bg-dark">
+		
+			<div class="card bg-light">
 
 				<div class="card-header">
-					<h4>Sign Up - Address</h4>
+					<h4>Address</h4>
 				</div>
 
 				<div class="card-body">
-					<sf:form method="POST" class="form-horizontal" id="billingForm" modelAttribute="billing">
+					<sf:form method="POST" class="form-horizontal" id="addressForm" modelAttribute="address">
 
 						<div class="form-group row">
 							<label class="col-form-label col-md-4" for="addressLineOne">Address Line One</label>
@@ -23,8 +24,7 @@
 						</div>
 
 						<div class="form-group row">
-							<label class="col-form-label col-md-4" for="addressLineTwo">Address
-								Line Two</label>
+							<label class="col-form-label col-md-4" for="addressLineTwo">Address Line Two</label>
 							<div class="col-md-8">
 								<sf:input type="text" path="addressLineTwo" class="form-control" placeholder="Enter Address Line Two" />
 								<sf:errors path="addressLineTwo" cssClass="form-text" element="em" />
@@ -42,7 +42,7 @@
 						<div class="form-group row">
 							<label class="col-form-label col-md-4" for="postalCode">Postal Code</label>
 							<div class="col-md-8">
-								<sf:input type="text" path="postalCode" class="form-control" placeholder="XXXXXX" />
+								<sf:input type="text" path="postalCode" class="form-control" placeholder="6 Digit Pin Code" />
 								<sf:errors path="postalCode" cssClass="form-text" element="em" />
 							</div>
 						</div>
@@ -67,17 +67,13 @@
 							<div class="offset-md-4 col-md-8">
 							
 								<!-- submit button for moving to the personal -->
-								<button type="submit" class="btn btn-primary" name="_eventId_personal">
-
+								<!-- <button type="submit" class="btn btn-primary" name="_eventId_personal">
 									<span class="oi oi-chevron-left"></span> Previous
-
-								</button>
+								</button> -->
 
 								<!-- submit button for moving to the confirm -->
-								<button type="submit" class="btn btn-primary" name="_eventId_confirm">
-
-									Next <span class="oi oi-chevron-right"></span>
-
+								<button type="submit" class="btn btn-success btn-block" name="_eventId_confirm">
+									Next <!-- <span class="oi oi-caret-right"></span> -->
 								</button>
 							</div>
 						</div>

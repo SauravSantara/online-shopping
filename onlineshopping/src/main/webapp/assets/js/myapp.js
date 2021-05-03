@@ -1,4 +1,13 @@
 $(function() {
+
+	//----------------------------------------------
+	// dismissing the loading page after 0.5 seconds
+	//----------------------------------------------
+/*	$(window).load(function(){
+		setTimeout(function() {
+			$(".se-pre-con").fadeOut("slow");
+		}, 500);			
+	});	*/
 	
 	//------------
 	//Active Menu
@@ -15,6 +24,7 @@ $(function() {
 			break;
 		case 'All Products':
 			$('#listProducts').addClass('active');
+			$('#all_products').addClass('active');
 			break;
 		case 'Manage Products':
 			$('#manageProducts').addClass('active');
@@ -34,7 +44,7 @@ $(function() {
 	var token = $('meta[name="_csrf"]').attr('content');
 	var header = $('meta[name="_csrf_header"]').attr('content');
 	
-	if(token.length > 0 && header.length > 0) {
+	if((token!=undefined && header !=undefined) && (token.length > 0 && header.length > 0)) {
 		
 		// set the token header for the ajax request
 		$(document).ajaxSend(function(e, xhr, options) {			
@@ -109,7 +119,8 @@ $(function() {
 								str += '<a href="'+window.contextRoot+'/cart/add/'+data+'/product" class="btn btn-success"><span class="oi oi-cart"></span></a>';
 							}
 						} else {
-							str += '<a href="'+window.contextRoot+'/login" class="btn btn-primary"><span class="oi oi-account-login"></span></a>';
+						//	str += '<a href="'+window.contextRoot+'/login" class="btn btn-primary"><span class="oi oi-account-login"></span></a>';
+							str += '<a href="javascript:void(0)" class="btn btn-secondary disabled"><span class="oi oi-cart"></span></a>';
 						}
 								
 						return str;
@@ -266,8 +277,8 @@ $(function() {
 			errorElement: 'em',
 			errorPlacement: function(error, element) {
 				
-				// add the class of help-block
-				error.addClass('help-block');
+				// add the class of form-text
+				error.addClass('form-text');
 				
 				// add the error element after the input element
 				error.insertAfter(element);				
@@ -303,8 +314,8 @@ $(function() {
 			errorElement: 'em',
 			errorPlacement: function(error, element) {
 				
-				// add the class of help-block
-				error.addClass('help-block');
+				// add the class of form-text
+				error.addClass('form-text');
 				
 				// add the error element after the input element
 				error.insertAfter(element);				
@@ -326,14 +337,14 @@ $(function() {
 		
 		// work only when the count has changed
 		if(currentCount !== originalCount) {
-			if(currentCount < 1 || currentCount > 3) {
+			if(currentCount < 1 || currentCount > 5) {
 				// reverting back to the original count
-				// user has given value below 1 and above 3
+				// user has given value below 1 and above 5
 				countElement.val(originalCount);
 				bootbox.alert({
 					size: 'medium',
 					title: 'Error',
-					message: 'Product count should be minimum 1 and maximum 3!'
+					message: 'Product count should be minimum 1 and maximum 5!'
 				});
 			}
 			else {
@@ -344,5 +355,8 @@ $(function() {
 		}
 	});
 	
-//---------------------------------
+	//---------------------------------
+	// 
+	//---------------------------------
+	
 });

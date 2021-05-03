@@ -1,6 +1,5 @@
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-primary text-white">
 	<div class="container">
-		<p class="m-0 text-center text-white">
-		Copyright &copy; Your Website 2019</p>
+		<h5 class="m-0 text-center">&copy;2021 Online-Shopping</h5>
 	</div>
 </footer>

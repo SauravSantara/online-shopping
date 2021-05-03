@@ -11,14 +11,11 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Address implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * private fields
-	 * */
+	// private fields 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -26,13 +23,6 @@ public class Address implements Serializable {
 	@Column(name = "user_id")
 	private int userId;
 	
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
 	@Column(name = "address_line_one")
 	@NotBlank(message = "Please enter address line one!")
 	private String addressLineOne;
@@ -54,22 +44,20 @@ public class Address implements Serializable {
 	@NotBlank(message = "Please enter postal code!")	
 	private String postalCode;
 	
-	@Column(name = "is_shipping")
-	private boolean shipping;
+	// setter and getter for the above fields 
 	
-	@Column(name = "is_billing")
-	private boolean billing;
-	
-	/*
-	 * setter and getter for the fields
-	 * */
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public String getAddressLineOne() {
 		return addressLineOne;
 	}
@@ -106,27 +94,14 @@ public class Address implements Serializable {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-	public boolean isShipping() {
-		return shipping;
-	}
-	public void setShipping(boolean shipping) {
-		this.shipping = shipping;
-	}
-	public boolean isBilling() {
-		return billing;
-	}
-	public void setBilling(boolean billing) {
-		this.billing = billing;
-	}
 
-	/*
-	 * toString for logging and debugging activity
-	 * */
+	// toString for logging and debugging activity
+	
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", addressLineOne=" + addressLineOne + ", addressLineTwo=" + addressLineTwo
 				+ ", city=" + city + ", state=" + state + ", country=" + country + ", postalCode=" + postalCode
-				+ ", shipping=" + shipping + ", billing=" + billing + "]";
+				+ "]";
 	}
 	
 }
